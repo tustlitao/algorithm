@@ -1,5 +1,9 @@
 package algorithm.find;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class SequentialSearchST<Key, Value> {
 
     private Node first;
@@ -84,16 +88,26 @@ public class SequentialSearchST<Key, Value> {
             }
         }
 
-        first = new Node(key, val, first);
+        first = new Node(key, val, first); //头插法
 
         size++;
     }
+
+    /**
+     *
+     * @param key
+     *
+     * 由于没有定义一个固定的头结点， 以普通方式写要判断头部
+     *
+     * 以递归方式可以巧妙避开
+     */
+
 
     public void delete(Key key) {
 
         if(key == null) throw new IllegalArgumentException("argument delete() is null");
 
-        first = delete(first, key);
+        first = delete(first, key); //递归方式删除节点
 
         return;
     }
@@ -115,6 +129,36 @@ public class SequentialSearchST<Key, Value> {
 
     }
 
-    
+    public Iterable<Key> keys() {
 
+        List<Key> list = new ArrayList<Key>();
+
+        for(Node x = first; x != null; x = x.next) {
+
+            list.add(x.key);
+        }
+
+        return list;
+    }
+
+    public static void main(String[] args) {
+
+        SequentialSearchST<String, Integer> st = new SequentialSearchST<>();
+
+        Scanner in = new Scanner(System.in);
+
+        int i = 0;
+
+        String key = null;
+
+        while(!"".equals(key = in.nextLine())) {
+
+            st.put(key, i++);
+        }
+
+        for(String s : st.keys()) {
+            System.out.println(s + " " + st.get(s));
+        }
+
+    }
 }
