@@ -4,6 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
+
+/**
+ *
+ * 简单泛型符号表API
+ *
+ * void put(Key key, Value value); //增 or 改
+ *
+ * void get(Key key);   //查
+ *
+ * void delete(Key key);    //删
+ *
+ * boolean contains(Key key);
+ *
+ * boolean isEmpty();
+ *
+ * int size();
+ *
+ * Iterable<Key> keys();
+ *
+ *
+ * @param <Key>
+ * @param <Value>
+ */
+
+
+
 public class SequentialSearchST<Key, Value> {
 
     private Node first;
